@@ -9,7 +9,6 @@ export function Event() {
     { id: 2, time: 1652934059000, title: 'велосипед', description: 'поставить детское кресло' },
     { id: 3, time: 1622965059000, title: 'дом', description: 'установить кондиционер' },
     { id: 4, time: 1652465059000, title: 'дом', description: 'пропылесосить' }
-
   ]);
 
   const addToDo = (id, time, title, description) => {
@@ -18,15 +17,15 @@ export function Event() {
 
   const deleteTodo = id => {
     setTodo(prev => prev.filter(t => t.id !== id));
-  }
+  };
 
   const clear = () => {
     setTodo([]);
-  }
+  };
   return (
     <div className={s.event}>
-      <AddToDo addToDo={addToDo} clear={clear}/>
-      <ToDoList todo={todo} deleteTodo={deleteTodo}/>
+      <AddToDo addToDo={addToDo} clear={clear} />
+      <ToDoList todo={todo} deleteTodo={deleteTodo} />
     </div>
-  )
+  );
 }

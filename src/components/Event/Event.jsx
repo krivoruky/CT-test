@@ -1,31 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AddToDo } from '../AddToDo/AddToDo';
 import { ToDoList } from '../ToDoList/ToDoList';
 import s from './Event.module.sass';
+import { clear, addToDo, deleteTodo } from '../../store/TodoSlice';
 
 export function Event() {
-  const [todo, setTodo] = useState([
-    { id: 1, time: 1653965059000, title: 'машина', description: 'поменять сайлентблоки' },
-    { id: 2, time: 1652934059000, title: 'велосипед', description: 'поставить детское кресло' },
-    { id: 3, time: 1622965059000, title: 'дом', description: 'установить кондиционер' },
-    { id: 4, time: 1652465059000, title: 'дом', description: 'пропылесосить' }
-  ]);
+  const todos = useSelector(state => state.todos.todo);
+  const dispatch = useDispatch();
 
-  const addToDo = (id, time, title, description) => {
-    setTodo(prev => [...prev, { id, time, title, description }]);
-  };
+  const clearTasks = () => dispatch(clear());
 
-  const deleteTodo = id => {
-    setTodo(prev => prev.filter(t => t.id !== id));
-  };
+  const addTask = (id, time, title, description) =>
+    dispatch(addToDo({ id, time, title, description }));
 
-  const clear = () => {
-    setTodo([]);
-  };
+  const deleteTask = id => dispatch(deleteTodo({ id }));
+
   return (
     <div className={s.event}>
-      <AddToDo addToDo={addToDo} clear={clear} />
-      <ToDoList todo={todo} deleteTodo={deleteTodo} />
+      <AddToDo addToDo={addTask} clear={clearTasks} />
+      <ToDoList todo={todos} deleteTodo={deleteTask} />
     </div>
   );
 }

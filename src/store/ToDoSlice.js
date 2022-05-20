@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const todoSlise = createSlice({
-  name: 'todos',
+  name: 'todo',
   initialState: {
     todo: [
       { id: 1, time: 1653965059000, title: 'машина', description: 'поменять сайлентблоки' },
@@ -12,15 +12,21 @@ const todoSlise = createSlice({
   },
   reducers: {
     addToDo(state, action) {
-      state.todos.push({
-        id: action.payload.text,
-        time: action.payload.text,
-        title: action.payload.text,
-        description: action.payload.text
+      state.todo.push({
+        id: action.payload.id,
+        time: action.payload.time,
+        title: action.payload.title,
+        description: action.payload.description
       });
     },
-    deleteTodo(state, action) {},
-    clear(state, action) {}
+    deleteTodo(state, action) {
+      const filter = state.todo.filter(t => t.id !== action.payload.id);
+      state.todo.length = 0;
+      state.todo.push(...filter);
+    },
+    clear(state) {
+      state.todo.length = 0;
+    }
   }
 });
 

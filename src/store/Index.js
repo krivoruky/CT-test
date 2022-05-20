@@ -10,7 +10,10 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, TodOReducer);
+
 export const store = configureStore({
-  reducer: persistedReducer
+  reducer: persistedReducer,
+  middleware: []
 });
+
 export const persistor = persistStore(store);

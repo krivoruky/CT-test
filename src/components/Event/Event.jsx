@@ -6,7 +6,7 @@ import s from './Event.module.sass';
 import { clear, addToDo, deleteTodo } from '../../store/TodoSlice';
 
 export function Event() {
-  const todos = useSelector(state => state.todos.todo);
+  const todos = useSelector(state => state.todo);
   const dispatch = useDispatch();
 
   const clearTasks = () => dispatch(clear());

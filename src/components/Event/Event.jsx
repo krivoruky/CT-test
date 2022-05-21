@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddToDo } from '../AddToDo/AddToDo';
 import { ToDoList } from '../ToDoList/ToDoList';
 import s from './Event.module.sass';
-import { clear, addToDo, deleteTodo } from '../../store/TodoSlice';
+import { clear, addToDo, deleteTodo } from '../../store/ToDoSlice';
 
 export function Event() {
   const todos = useSelector(state => state.todo);
